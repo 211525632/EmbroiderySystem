@@ -1,0 +1,123 @@
+; FBX 6.1.0 project file
+; http://pinwheel.studio
+; ----------
+FBXHeaderExtension:  {
+	FBXHeaderVersion: 1003
+	FBXVersion: 6100
+	Creator: "Pinwheel Studio"
+	CreationTimeStamp:  {
+		Version: 1000
+		Year: 2025
+		Month: 2
+		Day: 28
+		Hour: 16
+		Minute: 35
+		Second: 16
+		Millisecond: 728
+	}
+	OtherFlags:  {
+		FlagPLE: 0
+	}
+}
+; Object definition
+; ----------
+Definitions:  {
+	Version: 100
+	Count: 3
+	ObjectType: "Model" {
+		Count: 1
+	}
+	ObjectType: "Geometry" {
+		Count: 1
+	}
+	ObjectType: "Material" {
+		Count: 1
+	}
+	ObjectType: "Texture" {
+		Count: 1
+	}
+	ObjectType: "GlobalSettings" {
+		Count: 1
+	}
+}
+; Objects information
+; ----------
+Objects:  {
+	Model: "Model::TestRopeMesh", "Mesh" {
+		Version: 232
+		MultiLayer: 0
+		Shading: Y
+		Culling: "Culling Off"
+		Vertices: 0.17,0.0024,0.175 ,0.1712173,0.001697056,0.1738175 ,0.1717215,-1.049073E-10,0.1733277 ,0.1712173,-0.001697056,0.1738175 ,0.17,-0.0024,0.175 ,0.1687827,-0.001697056,0.1761825 ,0.1682785,2.861971E-11,0.1766723 ,0.1687827,0.001697057,0.1761825 ,0.17,0.0024,0.175 ,0,0.0024,0 ,0.001217264,0.001697056,-0.001182485 ,0.001721471,-1.049073E-10,-0.001672286 ,0.001217264,-0.001697056,-0.001182485 ,-1.504958E-10,-0.0024,1.461959E-10 ,-0.001217264,-0.001697056,0.001182485 ,-0.001721471,2.861971E-11,0.001672286 ,-0.001217263,0.001697057,0.001182484 ,3.009915E-10,0.0024,-2.923917E-10
+		PolygonVertexIndex: 1,9,-1,10,9,-2,2,10,-2,11,10,-3,3,11,-3,12,11,-4,4,12,-4,13,12,-5,5,13,-5,14,13,-6,6,14,-6,15,14,-7,7,15,-7,16,15,-8,8,16,-8,17,16,-9
+		GeometryVersion: 124
+		LayerElementNormal: 0 {
+			Version: 101
+			Name: ""
+			MappingInformationType: "ByVertice"
+			ReferenceInformationType: "Direct"
+			Normals: 0,0.0024,0,-0.001217264,0.001697056,-0.001182485,-0.001721471,-1.049073E-10,-0.001672286,-0.001217264,-0.001697056,-0.001182485,1.504958E-10,-0.0024,1.461959E-10,0.001217264,-0.001697056,0.001182485,0.001721471,2.861971E-11,0.001672286,0.001217263,0.001697057,0.001182484,-3.009915E-10,0.0024,-2.923917E-10,0,0.0024,0,-0.001217264,0.001697056,-0.001182485,-0.001721471,-1.049073E-10,-0.001672286,-0.001217264,-0.001697056,-0.001182485,1.504958E-10,-0.0024,1.461959E-10,0.001217264,-0.001697056,0.001182485,0.001721471,2.861971E-11,0.001672286,0.001217263,0.001697057,0.001182484,-3.009915E-10,0.0024,-2.923917E-10
+		}
+		LayerElementUV: 0 {
+			Version: 101
+			Name: "UVMap"
+			MappingInformationType: "ByVertice"
+			ReferenceInformationType: "Direct"
+			UV: 0,0,0.125,0,0.25,0,0.375,0,0.5,0,0.625,0,0.75,0,0.875,0,1,0,0,6,0.125,6,0.25,6,0.375,6,0.5,6,0.625,6,0.75,6,0.875,6,1,6
+		}
+		LayerElementColor: 0 {
+			Version: 101
+			Name: "Color"
+			MappingInformationType: "ByVertice"
+			ReferenceInformationType: "Direct"
+			Colors: 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+		}
+		LayerElementMaterial: 0 {
+			Version: 101
+			Name: ""
+			MappingInformationType: "AllSame"
+			ReferenceInformationType: "IndexToDirect"
+			Materials: 0
+		}
+		Layer: 0 {
+			Version: 100
+			LayerElement:  {
+				Type: "LayerElementNormal"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementUV"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementColor"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementMaterial"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementTexture"
+				TypedIndex: 0
+			}
+		}
+	}
+	Material: "Material::TestRopeMesh", "" {
+		Version: 102
+		ShadingModel: "lambert"
+		MultiLayer: 0
+		Properties60:  {
+			Property: "Diffuse", "ColorRGB", "", 1, 1, 1
+			Property: "Opacity", "double", "", 1
+			Property: "DiffuseColor", "ColorRGB", "", 1, 0, 0
+		}
+	}
+}
+; Object connections
+; ----------
+Connections:  {
+	Connect: "OO", "Model::TestRopeMesh", "Model::Scene"
+	Connect: "OO", "Material::TestRopeMesh", "Model::TestRopeMesh"
+	Connect: "OP", "Texture::TestRopeMesh_MainTex", "Material::TestRopeMesh", "DiffuseColor"
+}
