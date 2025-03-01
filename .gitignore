@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .vs
 .vscode
 .vsconfig
@@ -8,3 +9,14 @@ Temp/
 
 *.csproj
 *.sln
+=======
+.vs/
+.vsconfig
+.vscode/
+Library/
+Logs/
+Obj/
+Temp/
+*.sln
+*.csproj
+>>>>>>> e509a607659bd7f8c450e795c22260300a3f8c5d
