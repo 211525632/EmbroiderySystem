@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7737c43f5734f87be9e49d1bbfba78, type: 3}
+  m_Name: myRopeSection
+  m_EditorClassIdentifier: 
+  vertices:
+  - {x: -0.4573991, y: 0.29357797}
+  - {x: -0.28699553, y: 0}
+  - {x: -0.4394619, y: -0.29357797}
+  - {x: -0.4394619, y: -0.58715594}
+  - {x: 0, y: -0.79816514}
+  - {x: 0.44843048, y: -0.58715594}
+  - {x: 0.44843048, y: -0.29357797}
+  - {x: 0.28699553, y: 0}
+  - {x: 0.4394619, y: 0.29357797}
+  - {x: 0.43049327, y: 0.58715594}
+  - {x: 0, y: 0.78899086}
+  - {x: -0.4394619, y: 0.58715594}
+  - {x: -0.4573991, y: 0.29357797}
+  snapX: 32
+  snapY: 32
