@@ -63,30 +63,39 @@
     <Compile Include="Assets\XLua\Examples\09_GenericMethod\Foo.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\BasicUi\UiText.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\Control\Mouse\MousePinControl.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\Azure\WavUtility.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\OperationSaver\EmbroideryOpSaver.cs" />
     <Compile Include="Assets\XLua\Examples\08_Hotfix\HotfixTest.cs" />
     <Compile Include="Assets\Scripts\TestCode\TestDelegate.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\Azure\AzureSpeechToText.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\EmbroideryConst.cs" />
     <Compile Include="Assets\XLua\Src\TemplateEngine\TemplateEngine.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\SparkAI\ChatSpark.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\EmbroideryManager.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\Interface\IEmbroideryOp.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\Pin\PinOperator.cs" />
     <Compile Include="Assets\Scripts\Pools\PoolManager.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\UiAction\BasicLuaUiAction.cs" />
     <Compile Include="Assets\XLua\Src\ObjectCasters.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\Xunfei\XunfeiSpeechToText.cs" />
     <Compile Include="Assets\Scripts\TestCode\TestEvent.cs" />
     <Compile Include="Assets\Scripts\Enum\EEmbroideryOperation.cs" />
     <Compile Include="Assets\XLua\Src\LuaEnv.cs" />
     <Compile Include="Assets\XLua\Examples\07_AsyncTest\AsyncTest.cs" />
     <Compile Include="Assets\XLua\Tutorial\CSharpCallLua\CSCallLua.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\OpenAI\OpenAITextToSpeech.cs" />
     <Compile Include="Assets\Scripts\EventCenterFramewark\EventCenter.cs" />
     <Compile Include="Assets\Scripts\Cachine\ICachinePackage.cs" />
     <Compile Include="Assets\XLua\Src\LuaDLL.cs" />
     <Compile Include="Assets\Scripts\TestCode\TestRayCast.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\BaiduAI\BaiduSettings.cs" />
     <Compile Include="Assets\XLua\Src\LuaException.cs" />
     <Compile Include="Assets\XLua\Examples\14_HotfixAsyncAwait\HotfixAsyncAwaitTest.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\Expression\AudioMouthController.cs" />
     <Compile Include="Assets\XLua\Examples\11_RawObject\RawObjectTest.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\Azure\AzureTextToSpeech.cs" />
     <Compile Include="Assets\XLua\Src\SignatureLoader.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\BaiduAI\BaiduTextToSpeech.cs" />
     <Compile Include="Assets\Lua\LuaManager.cs" />
     <Compile Include="Assets\Scripts\Pools\PoolDemo.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\OperationHelper\PinPointVisualization.cs" />
@@ -95,34 +104,60 @@
     <Compile Include="Assets\Scripts\RopeColorChange\SliderBase.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Pools\Interface\IMPoolAble.cs" />
+    <Compile Include="Assets\Tool\Webgl\webglTextInput\WebGLSupport\WebGLWindow\WebGLWindow.cs" />
     <Compile Include="Assets\XLua\Src\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\History\ChatPrefab.cs" />
     <Compile Include="Assets\Lua\TestCCallLua\CallLua.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\Chat\ChatSample.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\UiCachine.cs" />
+    <Compile Include="Assets\Tool\Webgl\webglTextInput\WebGLSupport\WebGLInput\Wrapper\IInputField.cs" />
     <Compile Include="Assets\XLua\Src\LuaFunction.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\UiAction\NonUiAction.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\CamerCtlFramewark\MouseCtl\EmbroideryCameraCtl.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\chatGLM\chatGLM.cs" />
+    <Compile Include="Assets\Tool\Webgl\webglTextInput\WebGLSupport\WebGLInput\Mobile\WebGLInputMobile.cs" />
+    <Compile Include="Assets\Tool\Webgl\webglTextInput\WebGLSupport\WebGLInput\Wrapper\WrappedInputField.cs" />
     <Compile Include="Assets\XLua\Src\StaticLuaCallbacks.cs" />
     <Compile Include="Assets\Scripts\Pools\Interface\IPool.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\Interface\UiInterface.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\Pin\PinManager.cs" />
     <Compile Include="Assets\XLua\Examples\09_GenericMethod\GenericMethodExample.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\WOV\WOV.cs" />
     <Compile Include="Assets\XLua\Examples\12_ReImplementInLua\ReImplementInLua.cs" />
     <Compile Include="Assets\XLua\Src\LuaBase.cs" />
     <Compile Include="Assets\XLua\Src\InternalGlobals.cs" />
     <Compile Include="Assets\Scripts\Cachine\CachineAutoDelMachine.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\Azure\AzureSettings.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\BaiduAI\BaiduSpeechToText.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\chatGPT\chatGPT.cs" />
     <Compile Include="Assets\Scripts\TestCode\TestMoniter.cs" />
     <Compile Include="Assets\Scripts\Pools\Default\DefaultPool.cs" />
     <Compile Include="Assets\Scripts\MonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\Chat\ChatSetting.cs" />
     <Compile Include="Assets\XLua\Examples\08_Hotfix\StatefullTest.cs" />
     <Compile Include="Assets\Scripts\Cachine\CachineObjPackage.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\Chat\VoiceInputs.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\STT.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\Expression\Audio2LipScript.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\GPT-SoVITS\GPTSoVITSTextToSpeech.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\UiCollection.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\BasicUi\UiButton.cs" />
     <Compile Include="Assets\Scripts\MonoHelper.cs" />
     <Compile Include="Assets\XLua\Src\CodeEmit.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\Baidu\KnowledgeBaidu.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\Whisper\WhisperSpeechToText.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\UiManager.cs" />
     <Compile Include="Assets\XLua\Src\ObjectTranslatorPool.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\Xunfei\XunfeiSettings.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\OpenAI\OpenAISpeechToText.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\WOV\UnityWakeOnVoice.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\Expression\BlinkController.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\Xunfei\XunfeiTextToSpeech.cs" />
     <Compile Include="Assets\XLua\Src\DelegateBridge.cs" />
     <Compile Include="Assets\XLua\Examples\04_LuaObjectOrented\InvokeLua.cs" />
+    <Compile Include="Assets\Tool\LipSync\Scripts\OVRLipSync.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\Chat\RTChatSample.cs" />
+    <Compile Include="Assets\Tool\Webgl\webglTextInput\WebGLSupport\WebGLInput\Detail\RebuildChecker.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\UiAction\BasicUiAction.cs" />
     <Compile Include="Assets\XLua\Examples\06_Coroutine\CoroutineTest.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\UiResoucesManager.cs" />
@@ -132,22 +167,31 @@
     <Compile Include="Assets\XLua\Examples\06_Coroutine\Coroutine_Runner.cs" />
     <Compile Include="Assets\XLua\Examples\10_SignatureLoader\SignatureLoaderTest.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\Rope\RopeManager.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\chatGPT\chatgptTurbo.cs" />
     <Compile Include="Assets\XLua\Src\CopyByValue.cs" />
     <Compile Include="Assets\XLua\Examples\07_AsyncTest\MessageBox.cs" />
     <Compile Include="Assets\Scripts\Cachine\Cachine.cs" />
     <Compile Include="Assets\XLua\Tutorial\LoadLuaScript\Loader\CustomLoader.cs" />
+    <Compile Include="Assets\Tool\Webgl\webglVoiceInput\Scripts\WAV.cs" />
     <Compile Include="Assets\Scripts\Pools\Default\DefaultUiPool.cs" />
     <Compile Include="Assets\XLua\Src\TypeExtensions.cs" />
+    <Compile Include="Assets\Tool\Webgl\webglTextInput\WebGLSupport\WebGLInput\Wrapper\WrappedTMPInputField.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\GameManager.cs" />
     <Compile Include="Assets\XLua\Examples\08_Hotfix\HotfixTest2.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\OperationSaver\EmbroideryOpSaverCtl.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\Ollama\ChatOllama.cs" />
     <Compile Include="Assets\Scripts\Cachine\ECachineState.cs" />
     <Compile Include="Assets\Scripts\Cachine\ISelfDestroyAble.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\LLM.cs" />
     <Compile Include="Assets\XLua\Src\GenAttributes.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\TTS.cs" />
     <Compile Include="Assets\Scripts\RopeColorChange\CubePicker.cs" />
+    <Compile Include="Assets\Tool\LipSync\Scripts\AudioToLipSample.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\Baidu\AppBuilderBaidu.cs" />
     <Compile Include="Assets\Scripts\Pools\Interface\IPoolManager.cs" />
     <Compile Include="Assets\XLua\Src\MethodWarpsCache.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\Control\Mouse\m_MouseInput.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\RWKV\chatRWKV.cs" />
     <Compile Include="Assets\XLua\Src\RawObject.cs" />
     <Compile Include="Assets\Scripts\RopeColorChange\ColorPicker.cs" />
     <Compile Include="Assets\XLua\Tutorial\LoadLuaScript\ByFile\ByFile.cs" />
@@ -156,10 +200,15 @@
     <Compile Include="Assets\Scripts\TestCode\TestReflection.cs" />
     <Compile Include="Assets\XLua\Src\LuaTable.cs" />
     <Compile Include="Assets\Scripts\RopeColorChange\SavedSwatchesBase.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\Baidu\ChatBaidu.cs" />
     <Compile Include="Assets\XLua\Src\Utils.cs" />
     <Compile Include="Assets\Scripts\TestCode\RotateWithTime.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\LLM\chatGLM\ChatGLM_Turbo.cs" />
+    <Compile Include="Assets\Tool\Webgl\webglTextInput\WebGLSupport\WebGLInput\WebGLInput.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\Pin\SinglePinHelper.cs" />
+    <Compile Include="Assets\Tool\Webgl\webglVoiceInput\Scripts\SignalManager.cs" />
     <Compile Include="Assets\Scripts\TestCode\TestRopelengthChange.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\TTS&amp;&amp;STT\GPT-SoVITS\GPTSoVITSFASTAPI.cs" />
     <Compile Include="Assets\XLua\Examples\02_U3DScripting\LuaBehaviour.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\Rope\RopePool.cs" />
     <Compile Include="Assets\Scripts\RopeColorChange\SwatchesData.cs" />
@@ -171,6 +220,7 @@
     <Compile Include="Assets\XLua\Src\ObjectTranslator.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\UiLayerManager.cs" />
     <Compile Include="Assets\Scripts\UiFramewark\UiTest.cs" />
+    <Compile Include="Assets\Scripts\AI-Scripts\Chat\RTSpeechHandler.cs" />
     <Compile Include="Assets\Scripts\EmbroideryFramewark\GameLoop.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -184,9 +234,12 @@
     <None Include="Assets\XLua\Resources\xlua\util.lua.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\XLua\Examples\14_HotfixAsyncAwait\Resources\MyTask1.lua.txt" />
+    <None Include="Assets\Mesh\胡桃\胡桃.MMD4Mecanim.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Font\AI-Font\FontShader.shader" />
     <None Include="Assets\XLua\Examples\14_HotfixAsyncAwait\Resources\Method1.lua.txt" />
+    <None Include="Assets\Mesh\胡桃\readme【一定要看】.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\XLua\Resources\perf\profiler.lua.txt" />
@@ -207,6 +260,7 @@
     <None Include="Assets\XLua\Examples\07_AsyncTest\Resources\message_box.lua.txt" />
     <None Include="Assets\XLua\Examples\14_HotfixAsyncAwait\Resources\AsyncMethod2.lua.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Mesh\胡桃\胡桃.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
@@ -215,6 +269,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\XLua\Examples\06_Coroutine\Resources\cs_coroutine.lua.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\Tool\LipSync\Plugins\Win64\OVRLipSync.dll" />
     <None Include="Assets\XLua\Examples\14_HotfixAsyncAwait\Resources\await.lua.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -548,6 +603,10 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>D:\Unity-编译器learn安装\2022.3.17f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\Plugins\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
@@ -1054,6 +1113,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AI.Navigation">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Burst.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1146,6 +1209,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AI.Navigation.Updater">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1174,8 +1241,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AI.Navigation.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
