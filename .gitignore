@@ -1,3 +1,4 @@
+<<<<<<< feature-Ai
 .vs/
 .vsconfig
 .vscode/
@@ -7,3 +8,14 @@ Obj/
 Temp/
 *.sln
 *.csproj
+=======
+.vs/
+.vsconfig
+.vscode/
+Library/
+Logs/
+Obj/
+Temp/
+*.sln
+*.csproj
+>>>>>>> feature-Ai
