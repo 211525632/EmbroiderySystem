@@ -9,6 +9,17 @@ Temp/
 *.sln
 *.csproj
 =======
+<<<<<<< feature-Ai
+.vs/
+.vsconfig
+.vscode/
+Library/
+Logs/
+Obj/
+Temp/
+*.sln
+*.csproj
+=======
 .vs/
 .vsconfig
 .vscode/
@@ -19,3 +30,13 @@ Temp/
 *.sln
 *.csproj
 >>>>>>> feature-Ai
+>>>>>>> feature-Ai
+.vs
+.vsconfig
+.vscode
+Library
+Logs
+Obj
+Temp
+*.sln
+*.csproj
