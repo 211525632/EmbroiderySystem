@@ -1,10 +1,9 @@
-.vs
-.vscode
-Library
-Logs
-obj
-Temp
-
-*.vsconfig
+.vs/
+.vsconfig
+.vscode/
+Library/
+Logs/
+Obj/
+Temp/
 *.sln
 *.csproj
