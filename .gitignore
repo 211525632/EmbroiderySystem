@@ -4,7 +4,6 @@ Library
 Logs
 obj
 Temp
-UserSettings
 
 *.vsconfig
 *.sln
