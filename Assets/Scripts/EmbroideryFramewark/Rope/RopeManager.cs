@@ -226,5 +226,11 @@ namespace EmbroideryFramewark
 
         #endregion
 
+
+        public void RopeForcedUpdate()
+        {
+            _ropePool.ObiUpdater.FrocedUpdate();
+        }
+
     }
 }

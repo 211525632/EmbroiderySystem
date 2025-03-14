@@ -165,9 +165,9 @@ namespace EmbroideryFramewark
                 RopeManager.Instance.PreferRopeHelper.SetEndPosition(ropedatas[i].end);
                 RopeManager.Instance.PreferRopeHelper.SetRopeLengthTo(0.01f);
 
+                //
+                RopeManager.Instance.RopeForcedUpdate();
 
-                ///等两帧，等待绳子变化完全
-                yield return null;
                 yield return null;
 
                 //将currentRope模型化
@@ -179,6 +179,10 @@ namespace EmbroideryFramewark
 
             /////重新分配Rope的值
             RopeManager.Instance.ResetAllRope();
+        }
+
+        public void UpdateOneRopeCalculate() { 
+        
         }
 
 

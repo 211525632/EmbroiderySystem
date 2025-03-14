@@ -66,5 +66,23 @@ namespace Obi
             Interpolate(Time.fixedDeltaTime, accumulatedTime);
             ObiProfiler.DisableProfiler();
         }
+
+        public void FrocedUpdate()
+        {
+            Debug.Log("fixedUpdate£º"+Time.fixedDeltaTime);
+
+            PrepareFrame();
+
+            BeginStep(Time.fixedDeltaTime);
+
+            float substepDelta = Time.fixedDeltaTime / (float)substeps;
+
+            // Divide the step into multiple smaller substeps:
+            for (int i = 0; i < substeps; ++i)
+                Substep(Time.fixedDeltaTime, substepDelta, substeps - i);
+
+            EndStep(substepDelta);
+
+        }
     }
 }

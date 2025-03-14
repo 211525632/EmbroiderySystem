@@ -15,18 +15,12 @@ namespace EmbroideryFramewark
         //新创建的rope的父物体
         public GameObject _ropePoolRoot { get; private set; }
 
-
-        /// <summary>
-        /// 暂时没用
-        /// </summary>
-        private SingleRopeData _ordinaryData;
+        public ObiFixedUpdater ObiUpdater { get; private set; }
 
         public RopePool()
         {
             Init();
 
-            ///记录
-            _ordinaryData = new SingleRopeData(CurrentRopeHelper);
         }
 
         private readonly SingleRopeHelper[] _ropeHelpers = new SingleRopeHelper[3];
@@ -54,6 +48,8 @@ namespace EmbroideryFramewark
             {
                 _ropePoolRoot = GameObject.Instantiate<GameObject>(RopeManager.Instance._obiSolverModel);
                 _ropePoolRoot.name = "RopePool_Root";
+
+                ObiUpdater = _ropePoolRoot.GetComponent<ObiFixedUpdater>();
 
                 for (int i = 0; i < 3; ++i)
                 {
