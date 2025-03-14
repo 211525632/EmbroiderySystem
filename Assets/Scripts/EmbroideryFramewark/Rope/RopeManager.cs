@@ -28,6 +28,13 @@ namespace EmbroideryFramewark
         [SerializeField] public GameObject _empty;
 
 
+        [Header("功能设置：")]
+        [Header("穿过针线时，绳子的y轴值：")]
+
+        ///TODO:增加一个根据 布料的位置 确定当前绳子的位置
+        [SerializeField] private float ropePointY=0.01f;
+
+
         public GameObject _objModelRoot { get; private set; }
 
 
@@ -55,10 +62,13 @@ namespace EmbroideryFramewark
             get => this._ropePool.PreRopeHelper;
         }
 
-
-        public void ResetRope()
+        /// <summary>
+        /// 重新初始化所有的绳子
+        /// 并将其隐藏
+        /// </summary>
+        public void ResetAllRope()
         {
-
+            _ropePool.ResetAllRope();
         }
 
 
@@ -95,6 +105,7 @@ namespace EmbroideryFramewark
 
         /// <summary>
         /// 创建新的绳子
+        /// 将之前不用的Rope退回，之后重新借出一个没有被使用的绳子
         /// 会更新CurrentRope和PreferRope的值
         /// </summary>
         /// <param name="ropeBeginPosition"></param>
@@ -132,6 +143,31 @@ namespace EmbroideryFramewark
         {
             GameObject model = this.PreferRopeHelper.
                 GetRopeModelObj();
+            //静态批处理
+            model.isStatic = true;
+
+            Debug.Log("rope:" + model);
+
+            return model;
+        }
+
+        public GameObject RopeChangeToModel(int ropeindex = 1)
+        {
+            GameObject model=null;
+            
+            switch (ropeindex)
+            {
+                case 0:
+                    model = this.CurrentRopeHelper.GetRopeModelObj();
+                    break;
+                case 1:
+                    model = this.PreferRopeHelper.GetRopeModelObj();
+                    break;
+                case 2:
+                    model = this._ropePool.AfterRopeHelper.GetRopeModelObj();
+                    break;
+            }
+            
             //静态批处理
             model.isStatic = true;
 
@@ -174,8 +210,8 @@ namespace EmbroideryFramewark
         public void CreateRopePointPositionWithSide(Vector3 origin,float side,out Vector3 begin,out Vector3 end)
         {
             ///设置新生成的绳子的初始位置
-             begin = new Vector3(origin.x, 0.01f * -side, origin.z);
-             end = new Vector3(origin.x, 0.01f * -side, origin.z);
+             begin = new Vector3(origin.x, ropePointY * -side, origin.z);
+             end = new Vector3(origin.x, ropePointY * -side, origin.z);
         }
 
 

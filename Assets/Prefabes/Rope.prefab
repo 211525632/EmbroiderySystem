@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2967273723552489947}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -49,8 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RopeBeginAttachment: {fileID: 4990728895881335936}
   RopeEndAttachment: {fileID: 6285279699188887705}
-  MinRopeLength: 0.001
-  MaxRopeLength: 5
   _meshFilter: {fileID: 7796256885626381126}
 --- !u!1 &3157106902929525784
 GameObject:

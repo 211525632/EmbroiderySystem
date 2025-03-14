@@ -16,6 +16,9 @@ namespace EmbroideryFramewark
         public GameObject _ropePoolRoot { get; private set; }
 
 
+        /// <summary>
+        /// 暂时没用
+        /// </summary>
         private SingleRopeData _ordinaryData;
 
         public RopePool()
@@ -145,6 +148,24 @@ namespace EmbroideryFramewark
             IsBorrowing = false;
         }
 
+
+        /// <summary>
+        /// 重新初始化所有的绳子
+        /// 并将其隐藏
+        /// </summary>
+        public void ResetAllRope()
+        {
+            ///全部绳子都不再使用
+            for (int i = 0; i < ropeState.Length; i++)
+                ropeState[i] = false;
+
+            this.CurrentRopeHelper.SetRopeDisActive();
+            this.PreRopeHelper.SetRopeDisActive();
+            this.AfterRopeHelper.SetRopeDisActive();
+        }
+
+
+        #region 绳子序号迭代
         private void RenewOrder()
         {
             current = RenewOneOrder(current);
@@ -157,17 +178,19 @@ namespace EmbroideryFramewark
             return (order + 1) % size;
         }
 
+        #endregion
+
 
         #region 绳子隐藏与显示
 
         private void HideRope(int index)
         {
-            _ropeHelpers[index].GetComponentInChildren<MeshRenderer>().enabled = false;
+            _ropeHelpers[index].SetRopeDisActive();
         }
 
         private void ActiveRope(int index)
         {
-            _ropeHelpers[index].GetComponentInChildren<MeshRenderer>().enabled = true;
+            _ropeHelpers[index].SetRopeActive();
         }
 
         private void HideOrActiveRope(int index,bool isActive)

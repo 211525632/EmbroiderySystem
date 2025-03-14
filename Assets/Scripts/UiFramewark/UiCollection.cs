@@ -25,7 +25,6 @@ namespace UiFramewark
     /// 方便各种Ui的使用
     /// 通过他们各自的名称
     /// </summary>
-    /// 
 
     [LuaCallCSharp]
     public class UiCollection : MonoBehaviour,ISelfDestroyAble,IMPoolAble
