@@ -27,7 +27,7 @@ public class BuLiaoManager : MonoSingleton<BuLiaoManager>, IGetBuLiaoDate,ISetOr
     [SerializeField] private GameObject BuLiaoModel;
 
     [Header("…Ë÷√BuLiaoµƒlayer")]
-    public string LayerName;
+    public string LayerName = "BuLiao";
 
 
     private object myLock = new object();
