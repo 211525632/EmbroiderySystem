@@ -29,11 +29,10 @@ namespace EmbroideryFramewark
 
 
         [Header("功能设置：")]
-        [Header("穿过针线时，绳子的y轴值：")]
+        [Header("穿过针线时，生成的绳子与布料之间的偏移量：")]
 
-        ///TODO:增加一个根据 布料的位置 确定当前绳子的位置
-        [SerializeField] private float ropePointY=0.01f;
-
+        ///TODO:增加一个 根据布料的位置 确定当前绳子的位置
+        public float RopePointY = 0.01f;
 
         public GameObject _objModelRoot { get; private set; }
 
@@ -203,15 +202,20 @@ namespace EmbroideryFramewark
         /// TODO：将0.01f与布料控制器关联起来
         /// 根据要生成Rope处于布料的位置生成绳子的Begin与End
         /// </summary>
-        /// <param name="origin">   初定的刺绣点</param>
+        /// <param name="flagxz">   初定的刺绣点</param>
         /// <param name="side">     这个绳子的方位</param>
         /// <param name="begin">    生成绳子的beign</param>
         /// <param name="end">      生成绳子的End</param>
-        public void CreateRopePointPositionWithSide(Vector3 origin,float side,out Vector3 begin,out Vector3 end)
+        public void CreateRopePointPositionWithSide(Vector3 flagxz,float side,out Vector3 begin,out Vector3 end)
         {
+            float buliaoY = BuLiaoManager.Instance.GetBuLiaoData().position.y;
+
+            //1正面朝下，-1负面朝上
+            float ropePointY = PinManager.Instance.PinSide < 0 ? buliaoY + RopePointY : buliaoY - RopePointY;
+
             ///设置新生成的绳子的初始位置
-             begin = new Vector3(origin.x, ropePointY * -side, origin.z);
-             end = new Vector3(origin.x, ropePointY * -side, origin.z);
+            begin = new Vector3(flagxz.x, ropePointY, flagxz.z);
+             end = new Vector3(flagxz.x, ropePointY, flagxz.z);
         }
 
 

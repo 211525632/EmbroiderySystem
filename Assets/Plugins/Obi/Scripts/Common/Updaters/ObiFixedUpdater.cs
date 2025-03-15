@@ -69,8 +69,6 @@ namespace Obi
 
         public void FrocedUpdate()
         {
-            Debug.Log("fixedUpdate£º"+Time.fixedDeltaTime);
-
             PrepareFrame();
 
             BeginStep(Time.fixedDeltaTime);

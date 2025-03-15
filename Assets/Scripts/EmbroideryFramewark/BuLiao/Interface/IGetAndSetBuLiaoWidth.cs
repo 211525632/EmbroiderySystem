@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace EmbroideryFramewark
 {
-    public interface IGetBuLiaoDate
+    public interface IGetAndSetBuLiaoWidth
     {
-        BuLiaoData GetBuLiaoData();
+        public float GetBuLiaoWidth();
+
+        public void SetBuLiaoWidth(float buLiaoWidth);
+
     }
 }

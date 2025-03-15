@@ -1,23 +1,11 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace EmbroideryFramewark
 {
     public class EbdEditState : IEbdGameState
     {
-
-        [Header("布料的相关信息：(在AB包中实现)")]
-        private GameObject BuLiao;
-
-        [Header("布料的宽度")]
-        [SerializeField] float _buLiaoWidth = 0.004f;
-
-
         [Header("测试用绳子初始化长度：")]
         [SerializeField] float testLength = 1;
 
@@ -41,12 +29,11 @@ namespace EmbroideryFramewark
 
         public void OnStateEnter()
         {
-            ///初始化布料
-            BuLiao = GameObject.Find("BuLiao");
-            if (object.ReferenceEquals(BuLiao, null)) Debug.LogError("没有找到BuLiao!");
+            BuLiaoData buLiaoData   = BuLiaoManager.Instance.GetBuLiaoData();
+            float buLiaoWidth       = BuLiaoManager.Instance.GetBuLiaoWidth();
 
             /// 创建初始绳子
-            RopeManager.Instance.CreateRope(Vector3.up, Vector3.zero, _buLiaoWidth);
+            RopeManager.Instance.CreateRope(Vector3.up + buLiaoData.position, buLiaoData.position, buLiaoWidth);
             RopeManager.Instance.CurrentRopeHelper.SetBeginBoundingObject(PinManager.Instance.CurrentPinHelper._endTransform);
             RopeManager.Instance.CurrentRopeHelper.SetRopeLengthTo(testLength);
 
@@ -54,7 +41,7 @@ namespace EmbroideryFramewark
             PinManager.Instance.SetPinTransform(Vector3.up);
 
             //设置可视化范围（设置布料）
-            PinPointVisualization.Instance.SetBuLiao(this.BuLiao.transform.position);
+            PinPointVisualization.Instance.SetBuLiao(buLiaoData.position);
 
             SetEvent();
         }
@@ -168,26 +155,23 @@ namespace EmbroideryFramewark
         /// <param name="target">   针脚坐标</param>
         private void SetNewRope(Vector3 target)
         {
-            if (object.ReferenceEquals(this.BuLiao, null))
-            {
-                Debug.LogError("布料没有被设置！");
-                return;
-            }
+            float buliaoWidth = BuLiaoManager.Instance.GetBuLiaoWidth();
 
+            //将标记的位置作为创建绳子的标记
             float x = PinPointVisualization.Instance.CalculateAdsorbedNumber(target.x);
             float z = PinPointVisualization.Instance.CalculateAdsorbedNumber(target.z);
 
-            Vector3 ordinaryPosition = new Vector3(x, 0, z);
+            Vector3 flagPosition = new Vector3(x, 0, z);
 
             ///设置新生成的绳子的初始位置
             Vector3 tempBegin = Vector3.zero;
             Vector3 tempEnd = Vector3.zero;
             RopeManager.Instance.CreateRopePointPositionWithSide(
-                ordinaryPosition, PinManager.Instance.PinSide
+                flagPosition, PinManager.Instance.PinSide
                 , out tempBegin, out tempEnd);
 
             //创建新绳子
-            RopeManager.Instance.CreateRope(tempBegin, tempEnd, _buLiaoWidth);
+            RopeManager.Instance.CreateRope(tempBegin, tempEnd, buliaoWidth);
             RopeManager.Instance.CurrentRopeHelper.SetBeginBoundingObject(PinManager.Instance.CurrentPinHelper._endTransform);
 
             //规格化新绳子

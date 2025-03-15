@@ -14,12 +14,5 @@ namespace EmbroideryFramewark
         void SetBuLiaoTrans(Vector3 position,Quaternion rotation,Vector3 scale);
 
 
-
-        Vector3     GetBuLiaoPosition();
-
-        Quaternion  GetBuLiaoRotation();
-
-        Vector3     GetBuLiaoScale();
-
     }
 }

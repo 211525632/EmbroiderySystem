@@ -1,6 +1,9 @@
+using EmbroideryFramewark;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 
 /// <summary>
@@ -17,17 +20,124 @@ using UnityEngine;
 /// 
 /// 将布料想象为平面，而不是曲面
 /// </summary>
-public class BuLiaoManager : MonoBehaviour
+public class BuLiaoManager : MonoSingleton<BuLiaoManager>, IGetBuLiaoDate,ISetOrGetBuLiaoTrans, ISetOrGetBuLiaoType,IGetAndSetBuLiaoWidth
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [Header("AB:")]
+    [SerializeField] private GameObject BuLiaoModel;
+
+    [Header("设置BuLiao的layer")]
+    public string LayerName;
+
+
+    private object myLock = new object();
+
+    protected override void Awake()
     {
-        
+        base.Awake();
+        InitBuLiao();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    #region 全局唯一的布料
+
+    private BuLiao _buLiao;
+
+    private void InitBuLiao()
     {
-        
+        if(object.ReferenceEquals(null,BuLiaoModel))
+        {
+            Debug.Log("BuLiaoManager::布料model为null，初始化或者切换失败");
+            return;
+        }
+
+
+        ///生成新的BuLiao
+        GameObject  obj     = Instantiate<GameObject>(BuLiaoModel);
+
+        BuLiao      buLiao  = obj.GetComponent<BuLiao>();
+
+        if (!object.ReferenceEquals(buLiao, null))
+        {
+            this._buLiao    = buLiao;
+        }
+        else
+        {
+            this._buLiao    = obj.AddComponent<DefaultBuLiao>();
+            Debug.LogWarning("指定的模型没有挂载BuLiao类，及其子类，现已经自动挂载……");
+        }
+
+        obj.transform.position = Vector3.up * 0.3f;
+        obj.transform.rotation = Quaternion.identity;
+
     }
+
+    #endregion
+
+    #region Get、Set相关
+
+
+    ///会出现多个BuLiao的情况
+    ///那么什么时候会？
+    ///对于针线他们的操作都是全局唯一的
+
+    public BuLiaoData GetBuLiaoData()
+    {
+        lock (myLock)
+        {
+            if (object.ReferenceEquals(null, _buLiao))
+            {
+                return BuLiaoData.None;
+            }
+
+            return _buLiao.GetBuLiaoData();
+        }
+    }
+
+    public void SetBuLiaoTrans(Transform targetTrans)
+    {
+        ///TODO:同时计算法线normal
+        _buLiao.gameObject.transform.position = targetTrans.position;
+        _buLiao.gameObject.transform.rotation = targetTrans.rotation;
+        _buLiao.gameObject.transform.localScale = targetTrans.localScale;
+    }
+
+    public void SetBuLiaoTrans(Vector3 position, Quaternion rotation, Vector3 scale)
+    {
+        ///TODO:同时计算法线normal
+        _buLiao.gameObject.transform.position = position;
+        _buLiao.gameObject.transform.rotation = rotation;
+        _buLiao.gameObject.transform.localScale = scale;
+    }
+
+    public void SetBuLiaoType(GameObject prefabs)
+    {
+        if (!object.ReferenceEquals(null, prefabs))
+            this.BuLiaoModel = prefabs;
+    }
+
+    public GameObject GetBuLiaoType()
+    {
+        return _buLiao.gameObject;
+    }
+
+
+    #endregion
+
+    #region 布料宽度，与绳子在两侧的位置设置有关
+
+
+    private float _buLiaoWidth = 0.004f;
+
+    public float GetBuLiaoWidth()
+    {
+        return _buLiaoWidth;
+    }
+
+    public void SetBuLiaoWidth(float buLiaoWidth)
+    {
+        this._buLiaoWidth = buLiaoWidth;
+    }
+
+    #endregion
 }

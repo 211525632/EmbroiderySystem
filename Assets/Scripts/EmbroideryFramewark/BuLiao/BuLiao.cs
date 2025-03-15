@@ -12,7 +12,6 @@ namespace EmbroideryFramewark
     /// </summary>
     public abstract class BuLiao : MonoBehaviour, IGetBuLiaoDate
     {
-
-
+        public abstract BuLiaoData GetBuLiaoData();
     }
 }

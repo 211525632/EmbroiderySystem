@@ -12,8 +12,16 @@ namespace EmbroideryFramewark
     /// 
     /// 但是修改此信息不会对本来的BuLiao产生相关的改变
     /// </summary>
-    public struct BuLiaoData: ISetOrGetBuLiaoTrans, ISetOrGetBuLiaoType
+    public struct BuLiaoData
     {
+
+        public static BuLiaoData None = new BuLiaoData(false, Vector3.zero, null);
+
+
+
+        //首先需要检查这个是否有效
+        public bool         isValid;
+
         //法线向量
         public Vector3      normal;
         
@@ -23,62 +31,53 @@ namespace EmbroideryFramewark
         public Vector3      scale;
 
 
-
-        #region Set 、Get Trans
-
-        public Vector3 GetBuLiaoPosition()
+        public BuLiaoData(bool isValid,Vector3 normal,Transform targetTrans)
         {
-            return position;
-        }
+            if (!isValid)
+            {
+                this.isValid = false;
 
-        public Quaternion GetBuLiaoRotation()
-        {
-            return rotation;
-        }
+                this.normal = normal.normalized;
 
-        public Vector3 GetBuLiaoScale()
-        {
-            return scale;
-        }
+                this.position = Vector3.zero;
+                this.rotation = Quaternion.identity;
+                this.scale = Vector3.zero;
+                return;
+            }
 
+            this.isValid    = true;
 
+            this.normal     = normal.normalized;
 
-        public void SetBuLiaoTrans(Transform targetTrans)
-        {
             this.position   = targetTrans.position;
             this.rotation   = targetTrans.rotation;
-            this.scale      = targetTrans.localScale;  
+            this.scale      = targetTrans.localScale;
         }
 
-        public void SetBuLiaoTrans(Vector3 position, Quaternion rotation, Vector3 scale)
+        public BuLiaoData(bool isValid,Vector3 normal,Vector3 position,Quaternion rotation,Vector3 scale)
         {
+            if (!isValid)
+            {
+                this.isValid    = false;
+
+                this.normal     = normal.normalized;
+
+                this.position   = Vector3.zero;
+                this.rotation   = Quaternion.identity;
+                this.scale      = Vector3.zero;
+
+                return;
+            }
+
+            this.isValid = isValid;
+
+            this.normal     = normal.normalized;
+
             this.position   = position;
             this.rotation   = rotation;
             this.scale      = scale;
         }
 
-
-
-
-        #endregion
-
-
-
-        #region Set、Get BuLiaoType
-
-        public GameObject GetBuLiaoType()
-        {
-            throw new NotImplementedException();  
-        }
-
-        public void SetBuLiaoType(GameObject prefabs)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        ///材质相关：暂无
 
 
     }

@@ -32,11 +32,6 @@ namespace EmbroideryFramewark
             this.GameStateManager.SetGameState(state);
         }
 
-        //[Header("调节音量")]
-
-        //[Header("调节设置")]
-
-        //[Header("导出导入")]
 
         [SerializeField] List<SingleRopeData> singleRopeDatas;
         [SerializeField] List<GameObject> models;
