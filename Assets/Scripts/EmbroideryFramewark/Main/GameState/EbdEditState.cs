@@ -1,60 +1,77 @@
-using System;
+ï»¿using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+
 namespace EmbroideryFramewark
 {
-    public class GameManager : MonoBehaviour
+    public class EbdEditState : IEbdGameState
     {
-        [Header("²¼ÁÏµÄÏà¹ØĞÅÏ¢£º(ÔÚAB°üÖĞÊµÏÖ)")]
-        private GameObject BuLiao;
-
-        [Header("²¼ÁÏµÄ¿í¶È")]
-        [SerializeField] float _buLiaoWidth = 0.01f;
-
-
-        [Header("²âÊÔÓÃÉş×Ó³õÊ¼»¯³¤¶È£º")]
+        [Header("æµ‹è¯•ç”¨ç»³å­åˆå§‹åŒ–é•¿åº¦ï¼š")]
         [SerializeField] float testLength = 1;
 
-
-
+        /// <summary>
+        /// é’ˆç©¿è¿‡å¸ƒæ–™çš„ä½ç½®
+        /// </summary>
         private Vector3 collidPoistion;
 
-        private void Start()
-        {
-            ///³õÊ¼»¯²¼ÁÏ
-            BuLiao = GameObject.Find("BuLiao");
-            if (object.ReferenceEquals(BuLiao, null)) Debug.LogError("Ã»ÓĞÕÒµ½BuLiao!");
+        /// <summary>
+        /// æ”¶ç¼©åˆ°å¤šé•¿å°±ä¼šè®¤å®šä¸ºæ”¶ç¼©å®Œæˆ
+        /// </summary>
+        public float shrinkLength = 0.1f;
 
-            ///´´½¨³õÊ¼Éş×Ó
-            RopeManager.Instance.CreateRope( Vector3.up ,Vector3.zero, _buLiaoWidth);
+
+
+        #region GameStateç›¸å…³
+
+        private readonly EEbdGameState _state = EEbdGameState.EditMode;
+
+        public EEbdGameState GameState => _state;
+
+        public void OnStateEnter()
+        {
+            BuLiaoData buLiaoData   = BuLiaoManager.Instance.GetBuLiaoData();
+            float buLiaoWidth       = BuLiaoManager.Instance.GetBuLiaoWidth();
+
+            /// åˆ›å»ºåˆå§‹ç»³å­
+            RopeManager.Instance.CreateRope(Vector3.up + buLiaoData.position, buLiaoData.position, buLiaoWidth);
             RopeManager.Instance.CurrentRopeHelper.SetBeginBoundingObject(PinManager.Instance.CurrentPinHelper._endTransform);
             RopeManager.Instance.CurrentRopeHelper.SetRopeLengthTo(testLength);
 
-            ///ÉèÖÃÕë
+            ///è®¾ç½®é’ˆ
             PinManager.Instance.SetPinTransform(Vector3.up);
 
-            //ÉèÖÃ¿ÉÊÓ»¯·¶Î§£¨ÉèÖÃ²¼ÁÏ£©
-            PinPointVisualization.Instance.SetBuLiao(this.BuLiao.transform.position);
+            //è®¾ç½®å¯è§†åŒ–èŒƒå›´ï¼ˆè®¾ç½®å¸ƒæ–™ï¼‰
+            PinPointVisualization.Instance.SetBuLiao(buLiaoData.position);
 
             SetEvent();
         }
 
-        public float shrinkLength = 0.1f;
 
-        private void FixedUpdate()
+
+        public void OnStateExit()
         {
-            ///ÊÕËõÍê³ÉÅĞ¶Ï
+            Debug.Log("Exit Editor");
+            ///æ³¨é”€äº‹ä»¶
+            RopeManager.Instance.ResetAllRope();
+            
+            ///ç»ˆæ­¢æ‰€æœ‰çš„åˆºç»£è¡Œä¸º
+        }
 
-            //Debug.Log("distance:" + RopeManager.Instance.PreferRopeHelper.RopePointDistance + "  RopeLength:"+RopeManager.Instance.PreferRopeHelper.RopeLength);
+
+
+        public void OnStateUpdate() { }
+
+
+        public void OnStateFixedUpdate()
+        {
+            ///æ”¶ç¼©å®Œæˆåˆ¤æ–­
 
             if (PinManager.Instance.CurrentPinHelper._isShrink
                 && RopeManager.Instance.PreferRopeHelper?.RopeLength <= 0.1f)
             {
                 this._preLength = 0f;
 
-                StartCoroutine(WaitToNextFrame());
+                MonoHelper.Instance.StartCoroutine(WaitToNextFrame());
 
                 EventCenter<Action>.Instance.GetAction(EventConst.OnRopeShrinkComplete)?.Invoke();
 
@@ -62,7 +79,7 @@ namespace EmbroideryFramewark
                 return;
             }
 
-            ///ÊÕËõÖĞ,µÚ¶ş¸ö×÷ÓÃÊÇÊ¹ÆäÍÑÀëBeginEnterµÄÎü¸½Ğ§¹û
+            ///æ”¶ç¼©ä¸­,ç¬¬äºŒä¸ªä½œç”¨æ˜¯ä½¿å…¶è„±ç¦»BeginEnterçš„å¸é™„æ•ˆæœ
             if (PinManager.Instance.CurrentPinHelper._isShrink)
             {
                 EventCenter<Action>.Instance.GetAction(EventConst.OnRopeShrink)?.Invoke();
@@ -71,17 +88,17 @@ namespace EmbroideryFramewark
 
             switch (PinManager.Instance.CurrentPinState)
             {
-                    case PinState.BeginExit:
+                case PinState.BeginExit:
                     {
                         EventCenter<Action>.Instance.GetAction(EventConst.OnPinBeginExit)?.Invoke();
                         break;
                     }
-                    case PinState.BeginEnter:
+                case PinState.BeginEnter:
                     {
                         EventCenter<Action>.Instance.GetAction(EventConst.OnPinBeginEnter)?.Invoke();
                         break;
                     }
-                    case PinState.EndEnter:
+                case PinState.EndEnter:
                     {
                         collidPoistion = PinManager.Instance.CurrentPinHelper._endTransform.position;
                         EventCenter<Action<Vector3>>.Instance.GetAction(EventConst.OnPinEndEnter)?.Invoke(collidPoistion);
@@ -91,27 +108,31 @@ namespace EmbroideryFramewark
                     }
                     //case PinState.EndExit:
                     //{
-                    //    //½«ÆäÒÆ³öFlagµÄ¼ì²âÆô¶¯·¶Î§
+                    //    //å°†å…¶ç§»å‡ºFlagçš„æ£€æµ‹å¯åŠ¨èŒƒå›´
                     //    PinManager.Instance.CurrentPinOperator.transform.position -= Vector3.up * 
                     //    break;
                     //}
 
             }
-
         }
-
-
         IEnumerator WaitToNextFrame()
         {
             yield return null;
 
             RopeManager.Instance.PreferRopeHelper.SetRopeLengthTo(-1f);
-            ///´ËÊ±ÒÑ¾­ÖØ¹¹ÁËropeµÄË³Ğò
+            ///æ­¤æ—¶å·²ç»é‡æ„äº†ropeçš„é¡ºåº
             RopeManager.Instance.CurrentRopeHelper.SetRopeLengthTo(1.2f);
         }
 
 
-        #region ÊÂ¼şÉèÖÃ
+
+        public void OnStateLateUpdate() { }
+
+        #endregion
+
+
+
+        #region äº‹ä»¶è®¾ç½®
 
         private void SetEvent()
         {
@@ -129,52 +150,49 @@ namespace EmbroideryFramewark
         }
 
         /// <summary>
-        /// TODO:½«³õÊ¼µãÓëÖÕÖ¹µãÓÉFlagµÄ×ø±êÀ´¾ö¶¨
+        /// TODO:å°†åˆå§‹ç‚¹ä¸ç»ˆæ­¢ç‚¹ç”±Flagçš„åæ ‡æ¥å†³å®š
         /// </summary>
-        /// <param name="target">   Õë½Å×ø±ê</param>
+        /// <param name="target">   é’ˆè„šåæ ‡</param>
         private void SetNewRope(Vector3 target)
         {
-            if (object.ReferenceEquals(this.BuLiao, null))
-            {
-                Debug.LogError("²¼ÁÏÃ»ÓĞ±»ÉèÖÃ£¡");
-                return;
-            }
+            float buliaoWidth = BuLiaoManager.Instance.GetBuLiaoWidth();
 
+            //å°†æ ‡è®°çš„ä½ç½®ä½œä¸ºåˆ›å»ºç»³å­çš„æ ‡è®°
             float x = PinPointVisualization.Instance.CalculateAdsorbedNumber(target.x);
             float z = PinPointVisualization.Instance.CalculateAdsorbedNumber(target.z);
 
-            Vector3 ordinaryPosition = new Vector3(x,0,z);
+            Vector3 flagPosition = new Vector3(x, 0, z);
 
-            ///ÉèÖÃĞÂÉú³ÉµÄÉş×ÓµÄ³õÊ¼Î»ÖÃ
+            ///è®¾ç½®æ–°ç”Ÿæˆçš„ç»³å­çš„åˆå§‹ä½ç½®
             Vector3 tempBegin = Vector3.zero;
             Vector3 tempEnd = Vector3.zero;
             RopeManager.Instance.CreateRopePointPositionWithSide(
-                ordinaryPosition, PinManager.Instance.PinSide
-                ,out tempBegin,out tempEnd);
+                flagPosition, PinManager.Instance.PinSide
+                , out tempBegin, out tempEnd);
 
-            //´´½¨ĞÂÉş×Ó
-            RopeManager.Instance.CreateRope(tempBegin, tempEnd, _buLiaoWidth);
+            //åˆ›å»ºæ–°ç»³å­
+            RopeManager.Instance.CreateRope(tempBegin, tempEnd, buliaoWidth);
             RopeManager.Instance.CurrentRopeHelper.SetBeginBoundingObject(PinManager.Instance.CurrentPinHelper._endTransform);
-            
-            //¹æ¸ñ»¯ĞÂÉş×Ó
+
+            //è§„æ ¼åŒ–æ–°ç»³å­
             RopeManager.Instance.PreferRopeHelper.SetBeginBoundingObject(null);
-                //µ÷Õûµ½Í¬Ñù¸ß¶È
+            //è°ƒæ•´åˆ°åŒæ ·é«˜åº¦
             tempEnd.y = RopeManager.Instance.PreferRopeHelper._endTransform.position.y;
             RopeManager.Instance.PreferRopeHelper.SetBeginPosition(tempEnd);
         }
 
 
         /// <summary>
-        /// TODO:»¹¿ÉÒÔÌí¼Ó¡±´ÌĞå²Ù×÷µÄ³·Ïú²Ù×÷¡°ËùĞèÒªµÄ¶ÔÏó³ØÓë¿ìÕÕÏà¹Øº¯Êı
+        /// TODO:è¿˜å¯ä»¥æ·»åŠ â€åˆºç»£æ“ä½œçš„æ’¤é”€æ“ä½œâ€œæ‰€éœ€è¦çš„å¯¹è±¡æ± ä¸å¿«ç…§ç›¸å…³å‡½æ•°
         /// </summary>
         private void ChangeToModelAndSaveOperation()
         {
             GameObject PreRopeModel = RopeManager.Instance.RopeChangeToModel();
-            EmbroideryOpSaverCtl.Instance.SaveNewOp(RopeManager.Instance.PreferRopeHelper, PreRopeModel);
+            EbdShortMemeryCtrl.Instance.SaveNewOp(RopeManager.Instance.PreferRopeHelper, PreRopeModel);
         }
 
         /// <summary>
-        /// ¼ÇÂ¼Ö®Ç°µÄlength
+        /// è®°å½•ä¹‹å‰çš„length
         /// </summary>
         float _preLength = 0f;
 
@@ -196,6 +214,6 @@ namespace EmbroideryFramewark
         }
 
         #endregion
-    }
 
+    }
 }

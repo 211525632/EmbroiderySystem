@@ -1,32 +1,38 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace EmbroideryFramewark
 {
     /// <summary>
+    /// 短时间保存控制器
     /// 用于检测输入操作
     /// 执行 保存/撤销 操作
     /// </summary>
-    public class EmbroideryOpSaverCtl : MonoSingleton<EmbroideryOpSaverCtl>
+    public class EbdShortMemeryCtrl : MonoSingleton<EbdShortMemeryCtrl>
     {
 
-        private EmbroideryOpSaver _saver;
+        private EbdShortMemerator _saver;
 
+        public List<SingleRopeData> CurrentRopeDatas { get => _saver.RopeDatas.ToList(); }
 
         protected override void Awake()
         {
             base.Awake();
 
             _saver = new();
+
         }
+
+
+
 
         void Update()
         {
             Run();
         }
-
-        private bool _active = true;
 
 
         /// <summary>
@@ -57,25 +63,46 @@ namespace EmbroideryFramewark
                 _active = false;
             }
         }
+
+
+        #region 撤销与回忆功能实现
+
         /// <summary>
         /// 为了保证针的位置始终正确，我决定一次撤销操作将会连续撤销两次
         /// </summary>
-
-        public void RecollectOp() { 
-            _saver.RecollectOp();
-            _saver.RecollectOp();
+        public void RecollectOp()
+        {
+            _saver?.RecollectOp();
+            _saver?.RecollectOp();
         }
 
+        /// <summary>
+        /// 撤销
+        /// </summary>
         public void RevokeOp()
         {
-            _saver.RevokeOp();
-            _saver.RevokeOp();
+            _saver?.RevokeOp();
+            _saver?.RevokeOp();
         }
 
-        public void SaveNewOp(SingleRopeHelper currentRopeHelper, GameObject ropeModel) 
-        { 
-            _saver.SaveOp(currentRopeHelper,ropeModel); 
+        /// <summary>
+        /// 缓存一次操作
+        /// </summary>
+        /// <param name="currentRopeHelper"></param>
+        /// <param name="ropeModel"></param>
+        public void SaveNewOp(SingleRopeHelper currentRopeHelper, GameObject ropeModel)
+        {
+            _saver?.SaveOp(currentRopeHelper, ropeModel);
         }
+
+        #endregion
+
+
+        #region 功能开启关闭
+
+
+        private bool _active = true;
+
 
         private void Enable()
         {
@@ -86,6 +113,9 @@ namespace EmbroideryFramewark
         {
             this.gameObject.SetActive(false);
         }
+
+        #endregion
+
 
     }
 }

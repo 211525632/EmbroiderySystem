@@ -28,6 +28,12 @@ namespace EmbroideryFramewark
         [SerializeField] public GameObject _empty;
 
 
+        [Header("功能设置：")]
+        [Header("穿过针线时，生成的绳子与布料之间的偏移量：")]
+
+        ///TODO:增加一个 根据布料的位置 确定当前绳子的位置
+        public float RopePointY = 0.01f;
+
         public GameObject _objModelRoot { get; private set; }
 
 
@@ -55,10 +61,13 @@ namespace EmbroideryFramewark
             get => this._ropePool.PreRopeHelper;
         }
 
-
-        public void ResetRope()
+        /// <summary>
+        /// 重新初始化所有的绳子
+        /// 并将其隐藏
+        /// </summary>
+        public void ResetAllRope()
         {
-
+            _ropePool.ResetAllRope();
         }
 
 
@@ -95,6 +104,7 @@ namespace EmbroideryFramewark
 
         /// <summary>
         /// 创建新的绳子
+        /// 将之前不用的Rope退回，之后重新借出一个没有被使用的绳子
         /// 会更新CurrentRope和PreferRope的值
         /// </summary>
         /// <param name="ropeBeginPosition"></param>
@@ -135,6 +145,31 @@ namespace EmbroideryFramewark
             //静态批处理
             model.isStatic = true;
 
+            Debug.Log("rope:" + model);
+
+            return model;
+        }
+
+        public GameObject RopeChangeToModel(int ropeindex = 1)
+        {
+            GameObject model=null;
+            
+            switch (ropeindex)
+            {
+                case 0:
+                    model = this.CurrentRopeHelper.GetRopeModelObj();
+                    break;
+                case 1:
+                    model = this.PreferRopeHelper.GetRopeModelObj();
+                    break;
+                case 2:
+                    model = this._ropePool.AfterRopeHelper.GetRopeModelObj();
+                    break;
+            }
+            
+            //静态批处理
+            model.isStatic = true;
+
             return model;
         }
 
@@ -167,15 +202,20 @@ namespace EmbroideryFramewark
         /// TODO：将0.01f与布料控制器关联起来
         /// 根据要生成Rope处于布料的位置生成绳子的Begin与End
         /// </summary>
-        /// <param name="origin">   初定的刺绣点</param>
+        /// <param name="flagxz">   初定的刺绣点</param>
         /// <param name="side">     这个绳子的方位</param>
         /// <param name="begin">    生成绳子的beign</param>
         /// <param name="end">      生成绳子的End</param>
-        public void CreateRopePointPositionWithSide(Vector3 origin,float side,out Vector3 begin,out Vector3 end)
+        public void CreateRopePointPositionWithSide(Vector3 flagxz,float side,out Vector3 begin,out Vector3 end)
         {
+            float buliaoY = BuLiaoManager.Instance.GetBuLiaoData().position.y;
+
+            //1正面朝下，-1负面朝上
+            float ropePointY = PinManager.Instance.PinSide < 0 ? buliaoY + RopePointY : buliaoY - RopePointY;
+
             ///设置新生成的绳子的初始位置
-             begin = new Vector3(origin.x, 0.01f * -side, origin.z);
-             end = new Vector3(origin.x, 0.01f * -side, origin.z);
+            begin = new Vector3(flagxz.x, ropePointY, flagxz.z);
+             end = new Vector3(flagxz.x, ropePointY, flagxz.z);
         }
 
 
@@ -189,6 +229,12 @@ namespace EmbroideryFramewark
         }
 
         #endregion
+
+
+        public void RopeForcedUpdate()
+        {
+            _ropePool.ObiUpdater.FrocedUpdate();
+        }
 
     }
 }

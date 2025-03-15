@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> development
 .vs
 .vscode
 .vsconfig
@@ -8,6 +11,7 @@ obj/
 Temp/
 
 *.csproj
+<<<<<<< HEAD
 *.sln
 =======
 .vs/
@@ -20,3 +24,6 @@ Temp/
 *.sln
 *.csproj
 >>>>>>> e509a607659bd7f8c450e795c22260300a3f8c5d
+=======
+*.sln
+>>>>>>> development
