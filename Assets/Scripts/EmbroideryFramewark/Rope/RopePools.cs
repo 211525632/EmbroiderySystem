@@ -9,7 +9,7 @@ namespace EmbroideryFramewark
     /// <summary>
     /// 如果需要增加Rope请另写其他函数
     /// </summary>
-    public class RopePool
+    public class RopePools
     { 
 
         //新创建的rope的父物体
@@ -17,7 +17,7 @@ namespace EmbroideryFramewark
 
         public ObiFixedUpdater ObiUpdater { get; private set; }
 
-        public RopePool()
+        public RopePools()
         {
             Init();
 

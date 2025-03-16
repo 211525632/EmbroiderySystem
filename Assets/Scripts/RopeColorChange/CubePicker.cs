@@ -13,6 +13,8 @@ public class CubePicker : MonoBehaviour
     private void Start()
     {
         _cachedMaterials = new Dictionary<Transform, Material>();
+
+        ///这个是 关键
         ColorPickerRef.OnColorValueChanged += ChangeColorOfSelectedCube;
     }
 

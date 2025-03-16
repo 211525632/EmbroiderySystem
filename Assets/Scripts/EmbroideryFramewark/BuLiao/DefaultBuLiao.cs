@@ -16,7 +16,9 @@ namespace EmbroideryFramewark
 
         private void SetAllChildLayer(int layerNum)
         {
-            this.gameObject.layer = layerNum;
+
+            Debug.Log($"layer:{layerNum}");
+            this.gameObject.layer   = layerNum;
 
             int childCount          = this.transform.childCount;
 

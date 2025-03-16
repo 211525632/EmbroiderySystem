@@ -1,6 +1,7 @@
 using Obi;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.UI.Image;
@@ -13,8 +14,6 @@ namespace EmbroideryFramewark
     /// 3.之后继续担任下一次绳子模拟的RopeHelper
     /// </summary>
 
-    [RequireComponent(typeof(SingleRopeHelper))]
-    [RequireComponent(typeof(RopePool))]
 
     public class RopeManager : MonoSingleton<RopeManager>
     {
@@ -36,13 +35,57 @@ namespace EmbroideryFramewark
 
         public GameObject _objModelRoot { get; private set; }
 
+        public float RopeRidus
+        {
+            get => _ropePool.RopeRidus;
+        }
+
+
+
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _objModelRoot = Instantiate<GameObject>(_empty);
+            _objModelRoot.name = "Root_RopePool";
+
+
+            _ropePool = new();
+
+            _colorChange = this.GetOrAddComponent<RopeColorChange>();
+
+            SetEvent();
+        }
+
+        private void Start()
+        {
+            InitColorChangeMachine();
+        }
+
+
+        #region 绳子颜色控制器
+
+        [Header("设置绳子材质与颜色：(暂时拖拽)")]
+        public GameObject ColorChangeWithCanvus;
+
+        private RopeColorChange _colorChange;
+
+        public void InitColorChangeMachine()
+        {
+            _colorChange.SetTargetMaterial(this.CurrentRopeHelper.RopeMaterial);
+
+            _colorChange.Enable();
+        }
+
+        #endregion
 
 
         #region RopeHelper池
         /// <summary>
         /// 只能从池中获取RopeHelper
         /// </summary>
-        private RopePool _ropePool;
+        private RopePools _ropePool;
 
         /// <summary>
         /// TODO：改成反复使用
@@ -72,34 +115,6 @@ namespace EmbroideryFramewark
 
 
         #endregion
-
-
-        public float RopeRidus
-        {
-            get => _ropePool.RopeRidus;
-        }
-
-
-        protected override void Awake()
-        {
-            base.Awake();
-            //_objRoot = Instantiate<GameObject>(_obiSolverModel);
-            //_objRoot.name = "Root_"+_obiSolverModel.name;
-
-
-            _objModelRoot = Instantiate<GameObject>(_empty);
-            _objModelRoot.name = "Root_RopePool";
-
-
-            _ropePool = new();
-
-            SetEvent();
-        }
-
-        private void Start()
-        {
-            
-        }
 
 
         /// <summary>
@@ -173,6 +188,18 @@ namespace EmbroideryFramewark
             return model;
         }
 
+
+
+        /// <summary>
+        /// 强制刷新Rope的模型形状
+        /// 在同一帧既改变了绳子的begin和end的值，如果不使用这个函数，将会出现错误
+        /// </summary>
+        public void RopeForcedUpdate()
+        {
+            _ropePool.ObiUpdater.FrocedUpdate();
+        }
+
+
         #endregion
 
         #region 绳子的隐藏
@@ -194,7 +221,6 @@ namespace EmbroideryFramewark
         }
 
         #endregion
-
 
         #region 根据要生成Rope处于布料的位置生成绳子的Begin与End
 
@@ -231,10 +257,6 @@ namespace EmbroideryFramewark
         #endregion
 
 
-        public void RopeForcedUpdate()
-        {
-            _ropePool.ObiUpdater.FrocedUpdate();
-        }
 
     }
 }

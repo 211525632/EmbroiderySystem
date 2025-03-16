@@ -41,7 +41,7 @@ public class ColorPicker : MonoBehaviour
 
     private Texture2D _lumTexture;
     private Texture2D _alphaTexture;
-    private Texture2D _saturationTexture;
+    [SerializeField]private Texture2D _saturationTexture;
 
     [Header("Colors")]
     [SerializeField] private Color[] _hueColors;
