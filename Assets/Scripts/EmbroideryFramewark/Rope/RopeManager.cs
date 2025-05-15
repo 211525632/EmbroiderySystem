@@ -73,7 +73,7 @@ namespace EmbroideryFramewark
 
         public void InitColorChangeMachine()
         {
-            _colorChange.SetTargetMaterial(this.CurrentRopeHelper.RopeMaterial);
+            _colorChange.SetNewTargetMaterial(this.CurrentRopeHelper.RopeMaterial);
 
             _colorChange.Enable();
         }
@@ -159,8 +159,6 @@ namespace EmbroideryFramewark
                 GetRopeModelObj();
             //¾²Ì¬Åú´¦Àí
             model.isStatic = true;
-
-            Debug.Log("rope:" + model);
 
             return model;
         }

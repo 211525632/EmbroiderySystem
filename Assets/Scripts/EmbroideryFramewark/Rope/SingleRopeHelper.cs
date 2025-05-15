@@ -21,8 +21,12 @@ namespace EmbroideryFramewark
 
         public ObiParticleAttachment RopeEndAttachment;
 
-        [Header("绳子材质")]
-        public Material RopeMaterial;
+        //[Header("绳子材质")]
+        public Material RopeMaterial
+        {
+            get => _meshRenderer.material;
+            set=> _meshRenderer.material = value;
+        }
 
 
         //--------------------private------------------
@@ -46,8 +50,8 @@ namespace EmbroideryFramewark
             _endTransform = GameObject.Find(this.name + "/end").transform;
 
             Material newMaterial = new Material(_cursor.GetComponent<MeshRenderer>().material);
-            _cursor.GetComponent<MeshRenderer>().material = newMaterial;
-            RopeMaterial = newMaterial;
+            _meshRenderer.material = newMaterial;
+            //RopeMaterial = newMaterial;
         }
 
 

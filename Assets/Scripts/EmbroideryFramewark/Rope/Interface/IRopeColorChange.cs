@@ -15,7 +15,7 @@ namespace EmbroideryFramewark
 
     public interface IRopeColorChange
     {
-        void SetTargetMaterial(Material targetMaterial);
+        void SetNewTargetMaterial(Material targetMaterial);
 
         void SetColor(Color color);
     }

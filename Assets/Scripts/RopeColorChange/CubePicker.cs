@@ -7,8 +7,8 @@ public class CubePicker : MonoBehaviour
     [SerializeField] private ColorPicker ColorPickerRef;
     [SerializeField] private TextMeshProUGUI SelectedCubeText;
 
-    private Dictionary<Transform, Material> _cachedMaterials; // 缓存材质副本
-    private Material _materialOfSelectedCube; // 当前选中物体的材质
+    private Dictionary<Transform, Material> _cachedMaterials;   // 缓存材质副本
+    private Material _materialOfSelectedCube;                   // 当前选中物体的材质
 
     private void Start()
     {

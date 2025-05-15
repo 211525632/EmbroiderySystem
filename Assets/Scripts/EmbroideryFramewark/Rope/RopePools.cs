@@ -114,6 +114,8 @@ namespace EmbroideryFramewark
             this.CurrentRopeHelper.SetEndPosition(end);
             this.CurrentRopeHelper.SetRopeLengthTo(length);
 
+            this.CurrentRopeHelper.RopeMaterial = new Material(this.PreRopeHelper.RopeMaterial);
+
             return true;
         }
 

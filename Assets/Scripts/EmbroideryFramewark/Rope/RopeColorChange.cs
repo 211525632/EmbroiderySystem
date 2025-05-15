@@ -17,6 +17,14 @@ namespace EmbroideryFramewark
 
         private Material _selectedMaterial = null;
 
+        private Material curRopeMateral {
+            get => RopeManager.Instance.CurrentRopeHelper.RopeMaterial; 
+            set
+            {
+                RopeManager.Instance.CurrentRopeHelper.RopeMaterial = value;
+            }
+        }
+
         int  cnt = 0; 
 
         private void Awake()
@@ -37,33 +45,27 @@ namespace EmbroideryFramewark
             }
 
 
-            Debug.Log("one");
-
-
             if (object.ReferenceEquals(_colorPicker, null))
             {
                 Debug.LogError("初始化失败，找不到合适的ColorPicker");
                 return;
             }
 
-            Debug.Log("two");
             ///设置事件，自动改变绳子颜色
             _colorPicker.OnColorValueChanged += SetColor;
         }
 
 
-        public void SetTargetMaterial(Material targetMaterial)
+        public void SetNewTargetMaterial(Material targetMaterial)
         {
-            cnt++;
-            Debug.Log("Set:"+_colorPicker + $"   cnt:{cnt}");
 
-            if (object.ReferenceEquals(_colorPicker,null))
+            if (object.ReferenceEquals(_colorPicker, null))
             {
                 Debug.LogError("没有初始化colorPicker！");
-                return ;
+                return;
             }
 
-            if (!object.ReferenceEquals(targetMaterial,null))
+            if (!object.ReferenceEquals(targetMaterial, null))
             {
                 _selectedMaterial = targetMaterial;
                 _colorPicker.Show(true, true);
@@ -77,6 +79,16 @@ namespace EmbroideryFramewark
 
         public void SetColor(Color color)
         {
+            ///当前选择的材质不是currRope的材质
+            if(!ReferenceEquals(_selectedMaterial,curRopeMateral))
+            {
+                //复制上一次的材质
+                //curRopeMateral = new Material(_selectedMaterial);
+                curRopeMateral = new Material(curRopeMateral);
+                SetNewTargetMaterial(curRopeMateral);
+            }
+
+
             if (_selectedMaterial != null)
             {
                 _selectedMaterial.color = color;
