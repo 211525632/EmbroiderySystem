@@ -130,6 +130,7 @@ namespace EmbroideryFramewark
 
             for(int i = 0; i < lineNum; ++i)
             {
+                Debug.Log(lineInf[i]);
                 if (lineInf[i].StartsWith("END"))
                     break;
 
