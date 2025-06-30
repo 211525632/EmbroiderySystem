@@ -1,10 +1,16 @@
 .vs
+.vs/
+
 .vscode
+.vscode/
+
 .vsconfig
+
 Library/
 Logs/
-obj/
+Obj/
 Temp/
 
 *.csproj
 *.sln
+

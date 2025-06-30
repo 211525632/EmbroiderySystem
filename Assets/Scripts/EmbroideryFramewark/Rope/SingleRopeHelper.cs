@@ -21,6 +21,13 @@ namespace EmbroideryFramewark
 
         public ObiParticleAttachment RopeEndAttachment;
 
+        //[Header("绳子材质")]
+        public Material RopeMaterial
+        {
+            get => _meshRenderer.material;
+            set=> _meshRenderer.material = value;
+        }
+
 
         //--------------------private------------------
 
@@ -28,16 +35,23 @@ namespace EmbroideryFramewark
 
         private ObiRope _rope;
 
+        private MeshRenderer _meshRenderer;
+
         #region 生命周期函数
 
         private void Awake()
         {
             _cursor = GetComponentInChildren<ObiRopeCursor>();
             _rope = _cursor.GetComponent<ObiRope>();
+            _meshRenderer = _cursor.GetComponent<MeshRenderer>();
 
             _beginTransform = GameObject.Find(this.name + "/begin").transform;
 
             _endTransform = GameObject.Find(this.name + "/end").transform;
+
+            Material newMaterial = new Material(_cursor.GetComponent<MeshRenderer>().material);
+            _meshRenderer.material = newMaterial;
+            //RopeMaterial = newMaterial;
         }
 
 
@@ -135,13 +149,12 @@ namespace EmbroideryFramewark
         /// <param name="state">true隐藏；false解除隐藏</param>
         public void SetRopeDisActive()
         {
-            this.gameObject.SetActive(false);
+            _meshRenderer.enabled = false;
         }
 
         public void SetRopeActive()
         {
-            //this.GetMeshRender().enabled = true;
-            this.gameObject.SetActive(true);
+            _meshRenderer.enabled = true;
         }
 
         #endregion

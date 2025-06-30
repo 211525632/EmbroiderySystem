@@ -105,7 +105,7 @@ namespace EmbroideryFramewark
         /// <param name="poisition">与布料的接触点</param>
         public void MoveAndEnableFlag(Vector3 poisition)
         {
-            _temp = poisition + Vector3.up * VirticalDistance;
+            _temp = poisition + Vector3.up * BuLiaoManager.Instance.GetBuLiaoData().position.y;
             flag.transform.position = _temp;
             flag.gameObject.SetActive(true);
         }
@@ -129,7 +129,7 @@ namespace EmbroideryFramewark
 
         public void SetBuLiao(Vector3 buLiaoPosition)
         {
-            _buLiaoPosition = this.transform.position;
+            this._buLiaoPosition = buLiaoPosition;
             _isSetBuLiao = true;
         }
 
